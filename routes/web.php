@@ -16,12 +16,21 @@ use App\Http\Controllers\MoveShareController;
 use App\Http\Controllers\MoveSignatureController;
 use App\Http\Controllers\MoveStatusController;
 use App\Http\Controllers\MoveSurveyController;
+use App\Http\Controllers\Demo\DemoLoginController;
+use App\Http\Controllers\PublicPageController;
 use App\Http\Controllers\PublicShareController;
 use App\Http\Controllers\RedirectController;
 use Illuminate\Support\Facades\Route;
 
-// Public Root Redirect
-Route::get('/', [RedirectController::class, 'home'])->name('home');
+// Canonical Public P0 Routes
+Route::get('/', [PublicPageController::class, 'home'])->name('public.home');
+Route::get('/docs', [PublicPageController::class, 'docs'])->name('public.docs');
+
+// Demo Persona Quick Login Routes
+Route::get('/demo/login', [DemoLoginController::class, 'showLogin'])->name('demo.login');
+Route::post('/demo/quick-login', [DemoLoginController::class, 'quickLogin'])
+    ->middleware('throttle:30,1')
+    ->name('demo.quick-login');
 
 // Staff Authentication (Guest)
 Route::middleware('guest')->group(function (): void {

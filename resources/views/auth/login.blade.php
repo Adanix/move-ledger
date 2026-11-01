@@ -44,12 +44,19 @@
             </button>
         </div>
 
-        <!-- Quick Demo Credentials Hint -->
-        <div class="pt-4 border-t border-slate-100 text-xs text-slate-500 space-y-1">
-            <p class="font-semibold text-slate-700">Default Demo Accounts (Password: <code>password</code>):</p>
-            <p class="font-mono text-[11px]">&bull; Admin: admin@moveledger.test</p>
-            <p class="font-mono text-[11px]">&bull; Coordinator: dispatch@moveledger.test</p>
-            <p class="font-mono text-[11px]">&bull; Field Surveyor: surveyor@moveledger.test</p>
+        @if(config('app.demo_mode', true))
+        <div class="pt-2">
+            <a href="{{ route('demo.login') }}"
+               class="w-full min-h-12 flex items-center justify-center py-3 px-4 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs sm:text-sm shadow-xs transition-colors">
+                <span>Go to 1-Click Demo Personas &rarr;</span>
+            </a>
+        </div>
+        @endif
+
+        <div class="pt-4 border-t border-slate-100 text-center">
+            <a href="{{ route('public.home') }}" class="text-xs text-slate-500 hover:text-slate-800">
+                &larr; Back to Public Overview
+            </a>
         </div>
     </form>
 </x-layouts.guest>

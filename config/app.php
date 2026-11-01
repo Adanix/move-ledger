@@ -13,7 +13,9 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'MoveLedger'),
+
+    'demo_mode' => (bool) env('DEMO_MODE', true),
 
     /*
     |--------------------------------------------------------------------------

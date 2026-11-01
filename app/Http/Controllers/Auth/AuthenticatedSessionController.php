@@ -55,6 +55,10 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        if (config('app.demo_mode', true)) {
+            return redirect()->route('demo.login');
+        }
+
+        return redirect()->route('public.home');
     }
 }

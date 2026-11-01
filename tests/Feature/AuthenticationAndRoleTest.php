@@ -111,7 +111,8 @@ class AuthenticationAndRoleTest extends TestCase
 
         $response = $this->actingAs($user)->post('/logout');
 
-        $response->assertRedirect('/login');
+        $expectedRedirect = config('app.demo_mode', true) ? '/demo/login' : '/';
+        $response->assertRedirect($expectedRedirect);
         $this->assertGuest();
     }
 }
